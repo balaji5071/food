@@ -48,11 +48,12 @@ router.get('/:orderNumber', (req, res) => {
 
 // Update order status
 router.patch('/:orderNumber/status', (req, res) => {
-  try {
+  try 
+  {
     const order = orders.find(o => o.orderNumber === parseInt(req.params.orderNumber));
     if (!order) {
       return res.status(404).json({ message: 'Order not found' });
-    }
+              }
 
     order.status = req.body.status;
     res.json(order);

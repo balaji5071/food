@@ -3,10 +3,14 @@ import 'package:http/http.dart' as http;
 import '../models/order.dart';
 
 class ApiService {
-  // Change this to your local IP address when testing on physical device
-  // For Android emulator, use 10.0.2.2
-  // For iOS simulator, use localhost
-  static const String baseUrl = 'http://localhost:3000/api';
+  // Configure via the environment or override in your flavour / build config.
+  // For Android emulator  → http://10.0.2.2:3000/api
+  // For iOS simulator     → http://localhost:3000/api
+  // For production        → use HTTPS (e.g. https://api.example.com/api)
+  static const String baseUrl = String.fromEnvironment(
+    'API_BASE_URL',
+    defaultValue: 'http://localhost:3000/api',
+  );
 
   // Create a new order
   Future<Order> createOrder(List<OrderItem> items, double totalAmount) async {
